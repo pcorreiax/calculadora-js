@@ -12,20 +12,31 @@ body{
     align-items: center;
 }
 .calculadora{
-    width: 30vw;
-    height: 60vh;
-    border: 1px solid blue;
+    width: 450px;
+    height: 650px;
+    background-color: #252525;
+    border-radius: 15px;
 }
 
+.tela{
+    height: 30%;
+    padding: 20px;
+}
 .visor{
-    height: 20%;
-    border: 1px solid green;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-size: 55px;
 }
 .teclado{
-    height: 80%;
+    padding: 10px;
+    height: 70%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border: 1px solid pink;
     grid-template-areas: "";
     gap: 5px;
 }
@@ -33,10 +44,19 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
-    
+    color: #fffeff;
+    background-color: #3d3d3d;
+    border-radius: 10px;
+    font-size: 20px;
+    user-select: none;
+}
+.function{
+    background-color: #353535;
 }
 .enter{
+    font-size: 50px;
     grid-column: 4;
     grid-row: 3/6;
+    color: #353535 ;
+    background-color: #50c0fb;
 }
