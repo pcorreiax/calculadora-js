@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calculadora{
+    width: 30vw;
+    height: 60vh;
+    border: 1px solid blue;
+}
+
+.visor{
+    height: 20%;
+    border: 1px solid green;
+}
+.teclado{
+    height: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid pink;
+    grid-template-areas: "";
+    gap: 5px;
+}
+.teclas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+    
+}
+.enter{
+    grid-column: 4;
+    grid-row: 3/6;
+}
