@@ -10,6 +10,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #6b6b6b;
+    
 }
 .calculadora{
     width: 450px;
