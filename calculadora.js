@@ -1,34 +1,50 @@
-const visor = document.querySelector('.visor');
-const teclasNumericas = document.querySelectorAll('.number');
-const clear = document.querySelector('.clear');
-const backspace = document.querySelector('.backspace');
-const historico = document.querySelector('.historico');
+const teclas = document.querySelectorAll('.teclas')
+let visor = document.querySelector('.visor')
 
-visor.innerText = 0;
-const limiteDoVisor = 11;
+const valorInicial = visor.innerText = 0 
+for (const tecla of teclas) {
+        tecla.addEventListener('click', e => {
+            switch (e.target.dataset.char) {
+                case "somar":
+                    somar()
+                    break;
+                case "diminuir":
+                    diminuir()
+                    break;
+                case "dividir":
+                    dividir()
+                    break;
+                case "multiplicar":
+                    multiplicar()
+                    break;
+                case "backspace":
+                    backspace()
+                    break;
+                case "limpar":
+                    limpar()
+                    break;
+                case "enter":
+                    enter()
+                    break;
+                default:
+                    preencheVisor(e)
+                    break;
+            }
+        })
+}
 
-if(visor.innerText < limiteDoVisor){
-    for (const tecla of teclasNumericas) {
-        tecla.addEventListener('click', (e) => clickNumber(e)) 
+function preencheVisor(e){
+    const limiteVisor = 10
+    if (visor.innerText.length < limiteVisor){
+        visor.innerText === '0' ? visor.innerText = e.target.dataset.char : visor.innerText += e.target.dataset.char
     }
 }
 
-function clickNumber(e){
-    const tamanhoAtualdoVisor = visor.innerText.length;
-    
-    if(tamanhoAtualdoVisor < 11) 
-    visor.innerText === '0' ? visor.innerText = e.target.innerText  : visor.innerText += e.target.innerText; 
+function limpar(){
+    visor.innerText = 0
 }
 
-//Função do botão Clear
-clear.addEventListener('click', ()=> {
-    visor.innerText = 0
-    historico.innerText = ''
-})
-
-//Função do botão Backspace
-backspace.addEventListener('click', ()=> {
-    
-    const novoValor = visor.innerText.slice(0, -1)
-    novoValor.length > 0 ? visor.innerText = novoValor : visor.innerText = 0
-})
+function backspace(){
+     const valorCorrigido = visor.innerText.slice(0, -1)
+     valorCorrigido > 0 ?  visor.innerText = valorCorrigido : visor.innerText = 0
+}

@@ -66,12 +66,14 @@ body{
     background-color: #353535;
     font-size: 35px ;
 }
-.multiplicar p{
+.multiplicar{
     rotate: 45deg;
+    pointer-events: none;
 }
 .backspace img{
     width: 30%;
     color: #fffeff;
+    pointer-events: none;
 }
 .enter{
     height: 260px;
