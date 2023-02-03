@@ -3,6 +3,39 @@ const visor = document.querySelector('.visor')
 const preview = document.querySelector('.preview')
 
 const valorInicial = visor.innerText = 0;
+const limiteVisor = 16
+
+//Escuta o teclado para utilizar a aplicação sem o mouse
+
+document.addEventListener('keydown', e => {
+
+const teclasPermitidas = ['0', '1','2','3','4','5','6','7','8','9','c','C', 'Backspace', 'Enter', '.', ',', '+','-', '/', '*']
+
+    if(teclasPermitidas.some( tecla => tecla === e.key)){
+        switch (e.key) {
+            case 'Backspace':
+                backspace()
+                break;
+            case 'C':
+            case 'c':
+                limpar()
+                break;
+            default:
+                if (visor.innerText.length < limiteVisor){
+                    visor.innerText === '0' ? visor.innerText = e.key : visor.innerText += e.key
+                }
+            
+                if(visor.innerText.length > limiteVisor -3){
+                    visor.style.fontSize = "35px"
+                }
+                break;
+        }
+    }    
+})
+
+
+
+//Adiciona função aos botões clicados
 for (const tecla of teclas) {
         tecla.addEventListener('click', e => {
             switch (e.target.dataset.char) {
@@ -10,7 +43,7 @@ for (const tecla of teclas) {
                 case '-':
                 case '/':
                 case '*':
-                    preencheOperadores(e)
+                    preencheOperadoresMouse(e)
                     break;        
                 case "backspace":
                     backspace()
@@ -22,15 +55,13 @@ for (const tecla of teclas) {
                     enter()
                     break;
                 default:
-                    preencheVisor(e)
+                    preencheVisorMouse(e)
                     break;
             }
         })
 }
 
-const limiteVisor = 16
-
-function preencheVisor(e){
+function preencheVisorMouse(e){
 
     if (visor.innerText.length < limiteVisor){
         visor.innerText === '0' ? visor.innerText = e.target.dataset.char : visor.innerText += e.target.dataset.char
@@ -41,7 +72,7 @@ function preencheVisor(e){
     }
 }
 
-function preencheOperadores(e) {
+function preencheOperadoresMouse(e) {
     if(preview.innerText.slice(-1) === '+' || preview.innerText.slice(-1) === '-' || preview.innerText.slice(-1) === '/' || preview.innerText.slice(-1) === '*'){
         preview.innerText = preview.innerText.slice(0, -1)
         preview.innerText += e.target.dataset.char
