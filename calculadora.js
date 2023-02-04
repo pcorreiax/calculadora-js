@@ -35,7 +35,7 @@ const teclasPermitidas = ['0', '1','2','3','4','5','6','7','8','9','c','C', 'Bac
 
 
 
-//Adiciona função aos botões clicados
+//Adiciona função aos botões clicados com o mouse
 for (const tecla of teclas) {
         tecla.addEventListener('click', e => {
             switch (e.target.dataset.char) {
