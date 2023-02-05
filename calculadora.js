@@ -13,6 +13,12 @@ const teclasPermitidas = ['0', '1','2','3','4','5','6','7','8','9','c','C', 'Bac
 
     if(teclasPermitidas.some( tecla => tecla === e.key)){
         switch (e.key) {
+            case '+':
+            case '-':
+            case '/':
+            case '*':
+                preencheOperadoresTeclado(e)
+                break;        
             case 'Backspace':
                 backspace()
                 break;
@@ -20,14 +26,11 @@ const teclasPermitidas = ['0', '1','2','3','4','5','6','7','8','9','c','C', 'Bac
             case 'c':
                 limpar()
                 break;
+            case 'Enter' :
+                enter();
+                break;
             default:
-                if (visor.innerText.length < limiteVisor){
-                    visor.innerText === '0' ? visor.innerText = e.key : visor.innerText += e.key
-                }
-            
-                if(visor.innerText.length > limiteVisor -3){
-                    visor.style.fontSize = "35px"
-                }
+                preencheVisorTeclado(e)
                 break;
         }
     }    
@@ -61,6 +64,18 @@ for (const tecla of teclas) {
         })
 }
 
+function preencheVisorTeclado(e){
+
+    if (visor.innerText.length < limiteVisor){
+        visor.innerText === '0' ? visor.innerText = e.key : visor.innerText += e.key
+    }
+
+    if(visor.innerText.length > limiteVisor -3){
+        visor.style.fontSize = "35px"
+    }
+}
+
+
 function preencheVisorMouse(e){
 
     if (visor.innerText.length < limiteVisor){
@@ -72,6 +87,16 @@ function preencheVisorMouse(e){
     }
 }
 
+function preencheOperadoresTeclado(e) {
+    if(preview.innerText.slice(-1) === '+' || preview.innerText.slice(-1) === '-' || preview.innerText.slice(-1) === '/' || preview.innerText.slice(-1) === '*'){
+        preview.innerText = preview.innerText.slice(0, -1)
+        preview.innerText += e.key
+    }else{
+        preview.innerText = `${visor.innerText}  ${e.key}`
+        visor.innerText = 0
+    }
+}
+
 function preencheOperadoresMouse(e) {
     if(preview.innerText.slice(-1) === '+' || preview.innerText.slice(-1) === '-' || preview.innerText.slice(-1) === '/' || preview.innerText.slice(-1) === '*'){
         preview.innerText = preview.innerText.slice(0, -1)
@@ -80,7 +105,6 @@ function preencheOperadoresMouse(e) {
         preview.innerText = `${visor.innerText}  ${e.target.dataset.char}`
         visor.innerText = 0
     }
-    
 }
 
 function limpar(){
